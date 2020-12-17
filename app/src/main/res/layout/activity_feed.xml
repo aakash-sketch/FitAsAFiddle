@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feedHome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".Feed">
+
+    <ScrollView
+        android:id="@+id/mainScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/feedLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/PageidFeed"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:background="@drawable/backgroundofyourfeed"
+                android:fontFamily="@font/calligraffitti"
+                android:text="YOUR FEED"
+                android:textAlignment="center"
+                android:textColor="#957DAD"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/hairsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:onClick="SubFeedsHair"
+                android:text="Hairs"
+                android:textSize="30sp" />
+
+            <HorizontalScrollView
+                android:id="@+id/hairs"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:id="@+id/hairsLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/skinText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:onClick="SubFeedsSkin"
+                android:text="Skin"
+                android:textSize="30sp" />
+
+            <HorizontalScrollView
+                android:id="@+id/skin"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:id="@+id/skinlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/dailyDoseText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="SubFeedsDailyDose"
+                android:text="Daily Dose"
+                android:textSize="30sp" />
+
+            <HorizontalScrollView
+                android:id="@+id/dailyDose"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:id="@+id/dailyDoseLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="131dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="#005C3E3E"
+        android:onClick="logout"
+        android:text="logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/settig"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="#00CF8C8C"
+        android:onClick="logout"
+        android:text="Settings"
+        android:textColor="@android:color/secondary_text_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/saved"
+        android:layout_width="145dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="logout"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/settig" />
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="2dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainScroll">
+
+        <ImageView
+            android:id="@+id/Zoomimage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:srcCompat="@drawable/backgroundofyourfeed" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

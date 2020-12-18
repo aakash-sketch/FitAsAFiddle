@@ -106,7 +106,8 @@ public class Feed extends AppCompatActivity {
 
 
     int temp=0;
-
+    boolean isVisible=false;
+    ImageView imageView1;
     public void feedCreation(final LinearLayout layout, String categoryName){
 
 
@@ -127,21 +128,26 @@ public class Feed extends AppCompatActivity {
                             @Override
                             public void done(byte[] data, ParseException e) {
                                 if(e==null && data!=null){
-                                    Bitmap bitmap=BitmapFactory.decodeByteArray(data,0,data.length);
+                                    final Bitmap bitmap=BitmapFactory.decodeByteArray(data,0,data.length);
 
 
                                     final ImageView imageView=new ImageView(getApplicationContext());
                                     imageView.setLayoutParams(new ViewGroup.LayoutParams(500,500));
                                     imageView.setImageBitmap(bitmap);
                                     imageView.setPadding(15,0,15,0);
+
                                     imageView.setOnClickListener(new View.OnClickListener() {
+
                                         @Override
                                         public void onClick(View v) {
 //                                            o.put("isClicked","yes");
 //                                            temp;
-                                           ImageView imageView1=findViewById(R.id.Zoomimage);
-                                           imageView1.setImageResource(R.drawable.bg2);
+
+                                           imageView1=findViewById(R.id.Zoomimage);
+                                           imageView1.setImageBitmap(bitmap);
+
                                             View.setVisibility(android.view.View.VISIBLE);
+                                             isVisible=true;
                                         }
 
                                     });
@@ -184,6 +190,16 @@ public class Feed extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+//        int i=0;
+        if(isVisible){
+        View.setVisibility(android.view.View.INVISIBLE);
+        isVisible=false;}
+//        i++;
+        else {
+        super.onBackPressed();}
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +208,7 @@ public class Feed extends AppCompatActivity {
         getSupportActionBar().hide();
         setTitle("Fit As A Fiddle ");
         mainScroll = findViewById(R.id.mainScroll);
+
         feedLayout=findViewById(R.id.feedLayout);
         hairs=findViewById(R.id.hairsLayout);
         skin=findViewById(R.id.skinlayout);

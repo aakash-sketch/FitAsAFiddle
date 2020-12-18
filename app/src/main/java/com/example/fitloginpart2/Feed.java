@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +32,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
+import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.zip.Inflater;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -97,6 +102,9 @@ public class Feed extends AppCompatActivity {
         feedLayout.addView(sv);
 
     }
+
+
+
     int temp=0;
 
     public void feedCreation(final LinearLayout layout, String categoryName){
@@ -190,6 +198,9 @@ public class Feed extends AppCompatActivity {
         Dailydose = findViewById(R.id.dailyDoseLayout);
         View=findViewById(R.id.view);
         View.setVisibility(android.view.View.INVISIBLE);
+
+
+
 //create FEEDUI
         feedUI("Accupresure",R.id.Accupresure/*,R.id.AccupresureText*/);
 //LINK?FIND ui
@@ -199,51 +210,12 @@ public class Feed extends AppCompatActivity {
         feedCreation(skin,"skin");
         feedCreation(Accupresure,"accupresure");
         feedCreation(Dailydose,"dailydose");
-        final ParseQuery query = new ParseQuery("CategoryCreation");
-        query.whereEqualTo("Start","yes");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if(e == null && objects.size()>0){
-                    Document doc = null;
-                    try {
-                        doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File("file.xml"));
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
-                    } catch (SAXException saxException) {
-                        saxException.printStackTrace();
-                    } catch (ParserConfigurationException parserConfigurationException) {
-                        parserConfigurationException.printStackTrace();
-                    }
-                    DOMSource source = new DOMSource (doc);
 
-                    Node cards = doc.getElementsByTagName ("id").item (0);
-
-                    Element card = doc.createElement ("card");
-                    cards.appendChild(card);
-                    Element question = doc.createElement("question");
-                    question.appendChild(doc.createTextNode("This <b>is</b> a test."));
-                    card.appendChild (question);
-                    String str1 = null;
-                    String str2=null;
-                    try {
-                        str1=query.get("CategoryName").toString();
-                    } catch (ParseException parseException) {
-                        parseException.printStackTrace();
-                    }
-                    try {
-                        str2=query.get("LinearId").toString();
-                    } catch (ParseException parseException) {
-                        parseException.printStackTrace();
-                    }
-//                    feedUI(str1,str2);
-
-
-                }
-            }});
+        //Automation...Work..from Admin App
 
 
     }
+
     public void SubFeedsHair(View view){
         subFeeds = new Intent(getApplicationContext(),subFeed.class);
         subFeeds.putExtra("feedChild","Hair");
